@@ -23,6 +23,7 @@
  */
 
 #include "../include/FibonacciWords.h"
+
 #include "../include/colors.h"
 
 /// Compruebo que si los argumentos de entrada son correctos la función devuelve
@@ -63,10 +64,12 @@ bool ArgumentConditionError(int argc, char* argv[]) {
                   << std::endl
                   << kCyan << kBoldOn
                   << "-------------------------------------------------------"
-                  << std::endl << std::endl
+                  << std::endl
+                  << std::endl
                   << kYellow << kBoldOn << "Ejemplo de uso:" << std::endl
                   << kWhite << "$ " << argv[0] << " input.txt output.txt"
-                  << std::endl << std::endl;
+                  << std::endl
+                  << std::endl;
       else
         std::cout << kYellow << kBoldOn << "Modo de empleo:" << kWhite
                   << " ./FibonacciWords input.txt output.txt\n"
@@ -85,8 +88,8 @@ bool ArgumentConditionError(int argc, char* argv[]) {
 }
 
 /// Abro el fichero de entrada y voy almacenando cada línea en un string
-/// almacenado por un vector. Finalmente cierro el archivo de entrada, imprimo el
-/// número de palabras que ha leído y devuelvo el vector que almacena las
+/// almacenado por un vector. Finalmente cierro el archivo de entrada, imprimo
+/// el número de palabras que ha leído y devuelvo el vector que almacena las
 /// cadenas.
 std::vector<std::string> ReadFileImput(
     std::vector<std::string> ary_string_input, std::string input_file_name) {
@@ -110,17 +113,26 @@ void Print(std::vector<std::string> ary_string_input) {
 
 /// Desarollo las palabras de Fibonacci y las almaceno en un vector de cadenas.
 std::vector<std::string> CreateFibonacciAry(
-    std::vector<std::string> ary_string_fibonacci, unsigned ary_size) {
+    std::vector<std::string> ary_string_fibonacci,
+    std::vector<std::string> ary_string_input) {
+  unsigned size = 0;
+  for (unsigned i = 0; i < ary_string_input.size(); ++i)
+    if (ary_string_input[i].length() > size)
+      size = ary_string_input[i].length();
+  
   std::string first_line("a");
   std::string second_line("b");
   ary_string_fibonacci.clear();
-  for (unsigned i = 0; i < ary_size; ++i) {
+  int i = -1;
+  do {
+    i++;
     if (i == 0) ary_string_fibonacci.push_back(first_line);
     if (i == 1) ary_string_fibonacci.push_back(second_line);
     if (i > 1)
       ary_string_fibonacci.push_back(ary_string_fibonacci[i - 2] +
                                      ary_string_fibonacci[i - 1]);
-  }
+  } while (ary_string_fibonacci[i].length() < size);
+
   return ary_string_fibonacci;
 }
 

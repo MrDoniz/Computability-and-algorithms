@@ -32,7 +32,8 @@ std::vector<std::string> ReadFileImput(
     std::vector<std::string> ary_string_input, std::string input_file_name);
 void Print(std::vector<std::string> ary_string_input);
 std::vector<std::string> CreateFibonacciAry(
-    std::vector<std::string> ary_string_fibonacci, unsigned ary_size);
+    std::vector<std::string> ary_string_fibonacci,
+    std::vector<std::string> ary_string_input);
 void CompareAndWriteFileOutput(std::vector<std::string> ary_string_fibonacci,
                                std::vector<std::string> ary_string_input,
                                std::string output_file_name);
