@@ -41,8 +41,9 @@ int main(int argc, char* argv[]) {
     std::cout << "Input words:     ";
     Print(ary_string_input);
 
+    unsigned ary_size = ary_string_input.size();
     std::vector<std::string> ary_string_fibonacci;
-    ary_string_fibonacci = CreateFibonacciAry(ary_string_fibonacci, ary_string_input);
+    ary_string_fibonacci = CreateFibonacciAry(ary_string_fibonacci, ary_size);
 
     std::cout << "Fibonacci words: ";
     Print(ary_string_fibonacci);
