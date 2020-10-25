@@ -8,7 +8,7 @@
  * TITLE:   Fibonacci Words
  *
  * AUTHOR:  Dóniz García Daniel
- * DATE:    2 Oct 2020
+ * DATE:    24 Oct 2020
  * EMAIL:   alu0101217277@ull.edu.es
  * VERSION: 1
  * BRIEF:
@@ -22,24 +22,15 @@
  *
  */
 
-#include <math.h>
-#include <string.h>
-
-#include <algorithm>
-#include <cstddef>
-#include <fstream>
-#include <iostream>
-#include <string>
-#include <vector>
-
 #include "../include/FibonacciWords.h"
 
-// Ejecución principal del programa. Inicialmente compruebo si puede ocurrir
-// algun problema con los parametros, posteriormente leo el fichero de entrada e
-// introduzco los caracteres en un vector de cadenas. Continuo creando un vector
-// de cadenas el cual contiene la misma cantidad de palabras de fibonacci como
-// de palabras recogió el vector de entrada. Finalmente comparo ambos vectores,
-// imprimo y escribo simultaneamente.
+/// Ejecución principal del programa. Inicialmente compruebo si puede ocurrir
+/// algun problema con los parametros, posteriormente leo el fichero de entrada e
+/// introduzco los caracteres en un vector de cadenas. Continuo creando un vector
+/// de cadenas el cual contiene la misma cantidad de palabras de fibonacci como
+/// de palabras recogió el vector de entrada. Finalmente comparo ambos vectores,
+/// imprimo y escribo simultaneamente.
+
 int main(int argc, char* argv[]) {
   if (ArgumentConditionError(argc, argv)) {
     std::string input_file_name = argv[1];

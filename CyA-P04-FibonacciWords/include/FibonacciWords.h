@@ -8,7 +8,7 @@
  * TITLE:   Fibonacci Words
  *
  * AUTHOR:  Dóniz García Daniel
- * DATE:    2 Oct 2020
+ * DATE:    24 Oct 2020
  * EMAIL:   alu0101217277@ull.edu.es
  * VERSION: 1
  * BRIEF:
@@ -21,6 +21,11 @@
  * EXECUTION:   ./FibonacciWords input.txt output.txt
  *
  */
+
+#include <algorithm>
+#include <fstream>
+#include <iostream>
+#include <vector>
 
 bool ArgumentConditionError(int argc, char* argv[]);
 std::vector<std::string> ReadFileImput(

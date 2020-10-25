@@ -17,3 +17,4 @@ $(PROGRAM): $(ODIR)$(F1) $(ODIR)$(F2)
 .PHONY: clean
 clean:
 	rm -rf $(PROGRAM)
+	rm -rf output.txt
