@@ -78,6 +78,9 @@ bool ArgumentConditionError(int argc, char* argv[]) {
         //}
       }
     }
+    case 4: {
+      return true;
+    }
     case 2: {
       std::string command = argv[1];
       if (command == "--help")
@@ -102,9 +105,9 @@ bool ArgumentConditionError(int argc, char* argv[]) {
       break;
     }
     default: {
-      std::cout << kYellow << kBoldOn << "Modo de empleo:" << kWhite
-                << " ./FibonacciWords input.txt output.txt\n"
-                << "Pruebe " << argv[0] << " --help' para más información.\n";
+      std::cout << kYellow << kBoldOn << "Modo de empleo: " << kWhite
+                << "This program prints all the Fibonacci words with length between two limits. It requires two numeric parameters indicating the length limit for the words and a third parameter indicating the output file\n"
+                << "Usage: ./fibonacci_words_exercise lower_limit upper_limit output.txt\n";
       return false;
       break;
     }
@@ -152,23 +155,33 @@ void Fibonacci::Print() {
 }
 
 /// Desarollo las palabras de Fibonacci y las almaceno en un vector de cadenas.
-void Fibonacci::CreateFibonacciAry(int ary_input_size,
-                std::vector<std::string> ary_string_input) {
-  ary_size = ary_input_size;
+void Fibonacci::CreateFibonacciAry(int lower_limit, int upper_limit) {
 
   std::string first_line("a");
   std::string second_line("b");
 
-  // first_line = ary_string_input[0];
-  // second_line = ary_string_input[1];
 
-  for (int i = 0; i < ary_size; ++i) {
+  //ary_string.length()
+  int i = 0;
+  do {+
+    if (ary_string[i].length() > lower_limit){
     if (i == 0) 
       ary_string.push_back(first_line);
     if (i == 1) 
       ary_string.push_back(second_line);
     if (i > 1) 
       ary_string.push_back(ary_string[i - 2] + ary_string[i - 1]);
+    }
+
+  } while (ary_string[i].length() < upper_limit);
+  for (int i = 0; i < 10; ++i) {
+    if (i == 0) 
+      ary_string.push_back(first_line);
+    if (i == 1) 
+      ary_string.push_back(second_line);
+    if (i > 1) 
+      ary_string.push_back(ary_string[i - 2] + ary_string[i - 1]);
+  
   }
 }
 
@@ -177,24 +190,10 @@ void Fibonacci::CreateFibonacciAry(int ary_input_size,
 /// posición indico que trata de una palabra de fibonacci
 /// imprimiendo/escribiendo, de mismo modo con las que no son palabras de
 /// fibonacci. Finalmente cierro el archivo de salida.
-void Fibonacci::CompareAndWriteFileOutput(
-    std::vector<std::string> ary_string_input) {
+void Fibonacci::CompareAndWriteFileOutput() {
   std::cout << std::endl;
   std::ofstream output_file_program(file_name);
-  int word_number = 1;
   for (unsigned i = 0; i < ary_string.size(); ++i) {
-    if (ary_string[i].compare(ary_string_input[i])) {
-      std::cout << ary_string_input[i] << kRed << " is not a Fibonacci word"
-                << kWhite << std::endl;
-      output_file_program << ary_string_input[i] << " is not a Fibonacci word"
-                          << std::endl;
-    } else {
-      std::cout << ary_string_input[i] << kGreen << " is the word number "
-                << word_number << kWhite << std::endl;
-      output_file_program << ary_string_input[i] << " is the word number "
-                          << word_number << std::endl;
-    }
-    word_number++;
   }
   output_file_program.close();
 }

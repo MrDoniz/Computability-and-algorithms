@@ -50,14 +50,14 @@ class Fibonacci {
    *  @param ary_input_size Entero de palabras leidas por la suceción de
    * entrada.
    */
-  void CreateFibonacciAry(int ary_input_size, std::vector<std::string> ary_string);
+  void CreateFibonacciAry(int lower_limit, int upper_limit);
   /** @brief Imprime una suceción por consola.
    */
   void Print();
   /** @brief Compara las suceciones y escribe las conclusiones.
    * @param ary_string Suceción para comparar.
    */
-  void CompareAndWriteFileOutput(std::vector<std::string> ary_string);
+  void CompareAndWriteFileOutput();
   /** @brief Método que permite acceder al tamaño de una suceción
    * @returns Entero que contiene la cantidad de palabras que tiene la suceción.
    */

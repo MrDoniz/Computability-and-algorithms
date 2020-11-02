@@ -16,7 +16,7 @@
  *
  * SEE: https://en.wikipedia.org/wiki/Fibonacci_number
  *
- * FOLDER:      cd Computability-and-algorithms/CyA-P04-FibonacciWords/build
+ * FOLDER:      cd Computability-and-algorithms/CyA-P04-FibonacciWordsM/build
  * COMPILATION: make
  * REMOVEBUILD: make clean
  * EXECUTION:   ./FibonacciWords input.txt output.txt
@@ -33,21 +33,16 @@
 /// ambos vectores, imprimo y escribo simultaneamente.
 int main(int argc, char* argv[]) {
   if (ArgumentConditionError(argc, argv)) {
-    std::string input_file_name = argv[1];
-    Fibonacci ary_string_input(input_file_name);
-    ary_string_input.ReadFileImput();
-    std::cout << "Suceción entrada   :" << std::endl;
-    ary_string_input.Print();
+    int lower_limit = atoi(argv[1]);
+    int upper_limit = atoi(argv[2]);
+    std::string output_file_name = argv[3];
 
-    std::string output_file_name = argv[2];
     Fibonacci ary_string_fibonacci(output_file_name);
-    ary_string_fibonacci.CreateFibonacciAry(ary_string_input.GetSize(),
-                                            ary_string_input.GetAryString());
+    ary_string_fibonacci.CreateFibonacciAry(lower_limit, upper_limit);
     std::cout << "Suceción Fibonacci :" << std::endl;
     ary_string_fibonacci.Print();
 
-    ary_string_fibonacci.CompareAndWriteFileOutput(
-        ary_string_input.GetAryString());
+    //ary_string_fibonacci.CompareAndWriteFileOutput();
   }
   return 0;
 }
