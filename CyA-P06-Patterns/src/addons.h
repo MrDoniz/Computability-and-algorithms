@@ -1,3 +1,28 @@
+
+/**
+ * Universidad de La Laguna
+ * Escuela Superior de Ingeniería y Tecnología
+ * Grado en Ingeniería Informática
+ * Computabilidad y Algoritmia
+ * Práctica Nº: 6
+ *
+ * @tittle:   Patterm Search
+ *
+ * @author: Dóniz García Daniel
+ * @date:   3 Nov 2020
+ * @email:  alu0101217277@ull.edu.es
+ * @brief: Esta aplicación es utilizada para buscar subcadenas de cadenas
+ * introducidas en un archivo de entrada. La subcadena de busqueda introducida
+ * debe contener caracteres que sean letras minúsculas (sin incluir la ñ).
+ *
+ *
+ * @folder:      cd Computability-and-algorithms/CyA-P06-Patterns
+ * @compilation: make
+ * @removebuild: make clean
+ * @execution:   ./pattern_search pattern infile.txt outfile.txt
+ *
+ */
+
 #include <algorithm>
 #include <fstream>
 #include <iostream>
@@ -28,17 +53,18 @@ std::ostream& kRed(std::ostream& os) {
 }
 
 std::ostream& kYellow(std::ostream& os) { 
-  return os << "\033[0;33m"; 
+  return os << "\033[0;33m";
 }
 
 bool ArgumentConditionError(int argc, char* argv[]) {
   switch (argc) {
-    case 4:  {
-      std::string pattern          = argv[1];
-      std::string input_file_name  = argv[2];
+    case 4: {
+      std::string pattern = argv[1];
+      std::string input_file_name = argv[2];
       std::string output_file_name = argv[3];
       if (input_file_name.length() > 4 && output_file_name.length() > 4) {
-        if (input_file_name == "infile.txt" && output_file_name == "outfile.txt") {
+        if (input_file_name == "infile.txt" &&
+            output_file_name == "outfile.txt") {
           std::ofstream output_file_program(output_file_name);
           std::ifstream input_file_program(input_file_name);
           if (output_file_program.is_open() && input_file_program.is_open()) {
@@ -53,32 +79,32 @@ bool ArgumentConditionError(int argc, char* argv[]) {
         }
       }
     }
-    case 2:  {
+    case 2: {
       std::string command = argv[1];
       if (command == "--help")
-        std::cout << "Este programa dada una secuencia de palabras que estan \n"
-                     "escritas en un archivo .txt indique si son palabras de \n"
-                     "Fibonacci o no. Para aquellas que lo sean, el programa \n"
-                     "ha de indicar su posición en la secuencia."
+        std::cout << "Esta aplicación es utilizada para buscar subcadenas de \n"
+                     "cadenas introducidas en un archivo de entrada. La \n"
+                     "subcadena de busqueda introducida debe contener \n"
+                     "caracteres que sean letras minúsculas (sin incluir la ñ)."
                   << std::endl
                   << kCyan << kBoldOn
                   << "-------------------------------------------------------"
                   << std::endl
                   << std::endl
                   << kYellow << kBoldOn << "Ejemplo de uso:" << std::endl
-                  << kWhite << "$ " << argv[0] << " input.txt output.txt"
-                  << std::endl
+                  << kWhite << "$ " << argv[0]
+                  << " pattern infile.txt outfile.txt" << std::endl
                   << std::endl;
       else
         std::cout << kYellow << kBoldOn << "Modo de empleo:" << kWhite
-                  << " ./FibonacciWords input.txt output.txt\n"
+                  << " ./pattern_search pattern infile.txt outfile.txt\n"
                   << "Pruebe " << argv[0] << " --help' para más información.\n";
       return false;
       break;
     }
     default: {
       std::cout << kYellow << kBoldOn << "Modo de empleo:" << kWhite
-                << " ./FibonacciWords input.txt output.txt\n"
+                << " ./pattern_search pattern infile.txt outfile.txt\n"
                 << "Pruebe " << argv[0] << " --help' para más información.\n";
       return false;
       break;
