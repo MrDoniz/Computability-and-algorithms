@@ -14,7 +14,6 @@
  * introducidas en un archivo de entrada. La subcadena de busqueda introducida
  * debe contener caracteres que sean letras minúsculas (sin incluir la ñ).
  *
- *
  * @folder:      cd Computability-and-algorithms/CyA-P06-Patterns
  * @compilation: make
  * @removebuild: make clean
@@ -27,11 +26,11 @@
 
 int main(int argc, char* argv[]) {
   if (ArgumentConditionError(argc, argv)) {
-    Automata first_automata(argc, argv);
-    if (first_automata.TestPattern()) {
-      first_automata.Run();
+    Pattern pattern_search(argc, argv);
+    if (pattern_search.TestPattern()) {
+      pattern_search.Run();
     } else {
-      std::cout << "Los símbolos de pattern no pertenecen al afabeto" << std::endl;
+      std::cout << "Los simbolos de pattern no pertenecen al afabeto" << std::endl;
     }
   }
   return 0;

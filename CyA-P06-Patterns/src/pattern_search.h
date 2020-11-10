@@ -14,7 +14,6 @@
  * introducidas en un archivo de entrada. La subcadena de busqueda introducida
  * debe contener caracteres que sean letras minúsculas (sin incluir la ñ).
  *
- *
  * @folder:      cd Computability-and-algorithms/CyA-P06-Patterns
  * @compilation: make
  * @removebuild: make clean
@@ -27,10 +26,10 @@
 #include <iostream>
 #include <vector>
 
-class Automata {
+class Pattern {
  public:
-  Automata(int argc, char* argv[]);
-  ~Automata();
+  Pattern(int argc, char* argv[]);
+  ~Pattern();
 
   void Run();
   void ReadFileImput();

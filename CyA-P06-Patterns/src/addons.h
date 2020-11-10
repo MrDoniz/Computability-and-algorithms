@@ -15,7 +15,6 @@
  * introducidas en un archivo de entrada. La subcadena de busqueda introducida
  * debe contener caracteres que sean letras minúsculas (sin incluir la ñ).
  *
- *
  * @folder:      cd Computability-and-algorithms/CyA-P06-Patterns
  * @compilation: make
  * @removebuild: make clean
