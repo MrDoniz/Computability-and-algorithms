@@ -22,31 +22,22 @@
  *
  */
 
-#include <algorithm>
-#include <fstream>
 #include <iostream>
 #include <vector>
 
-class Pattern {
+#define NO_OF_CHARS 125  
+
+class AutomataFinito {
  public:
-  Pattern(int argc, char* argv[]);
-  ~Pattern();
+    AutomataFinito(std::string conjunto, std::string pattern, int state_end);
+    ~AutomataFinito();
 
-  void Run();
-  void ReadFileImput();
-  void WriteFileOutput();
-
-  bool TestSet(int i);
-  bool TestPattern();
-
-  std::string GetPattern(void);
-  int GetStateEnd(void);
+    bool Search();
+    void RunAutomataFinito(int TF[][NO_OF_CHARS]);
+    int getNextState(int state, int x);
 
  private:
-  std::vector<std::string> vector_conjuntos;
-  std::string pattern;
-  std::vector<std::string> vector_word_output;
-  std::string infile_name;
-  std::string outfile_name;
-  int state_end;
+    std::string pattern_af;
+    std::string conjunto_af;
+    int state_end_af;
 };

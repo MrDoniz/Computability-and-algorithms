@@ -5,14 +5,15 @@
  * Computabilidad y Algoritmia
  * Práctica Nº: 6
  *
- * @tittle:   Patterm Search
+ * @tittle: Patterm Search
  *
  * @author: Dóniz García Daniel
  * @date:   3 Nov 2020
  * @email:  alu0101217277@ull.edu.es
- * @brief: Esta aplicación es utilizada para buscar subcadenas de cadenas
+ * @brief:  Esta aplicación es utilizada para buscar subcadenas de cadenas
  * introducidas en un archivo de entrada. La subcadena de busqueda introducida
  * debe contener caracteres que sean letras minúsculas (sin incluir la ñ).
+ * @see:    https://github.com/garamira/CyA-P06-Patterns
  *
  * @folder:      cd Computability-and-algorithms/CyA-P06-Patterns
  * @compilation: make
@@ -22,11 +23,21 @@
  */
 
 #include "pattern_search.h"
+#include "automata_finito.h"
 
 Pattern::Pattern(int argc, char* argv[]) {
   pattern = argv[1];
   infile_name = argv[2];
   outfile_name = argv[3];
+  state_end = pattern.size();
+}
+
+std::string Pattern::GetPattern(void) {
+  return pattern;
+}
+
+int Pattern::GetStateEnd(void) {
+  return state_end;
 }
 
 Pattern::~Pattern() {}
@@ -36,7 +47,8 @@ void Pattern::Run() {
   for (unsigned i = 0; i < vector_conjuntos.size(); i++) {
     std::cout << "Conjunto: " << vector_conjuntos[i] << "\t\t";
     if (TestSet(i)) {
-      if (Nodo(i)) {
+      AutomataFinito AutomataFinitoFirst(vector_conjuntos[i], pattern, state_end);
+      if (AutomataFinitoFirst.Search()) {
         vector_word_output.push_back("Si");
         std::cout << "Si" << std::endl;
       } else {
@@ -66,22 +78,6 @@ void Pattern::WriteFileOutput() {
   for (unsigned i = 0; i < vector_word_output.size(); ++i)
     output_file_program << vector_word_output[i] << std::endl;
   output_file_program.close();
-}
-
-bool Pattern::Nodo(int iterator_string) {
-  unsigned j = 0;
-  int numero_estados = vector_conjuntos[iterator_string].size();
-  for (int i = 0; i < numero_estados; i++) {
-    if (vector_conjuntos[iterator_string][i] == pattern[j]) {
-      j++;
-    } else {
-      j = 0;
-    }
-    if (j == pattern.size()) {
-      return true;
-    }
-  }
-  return false;
 }
 
 bool Pattern::TestSet(int iterator_string) {
