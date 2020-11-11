@@ -86,8 +86,16 @@ void Pattern::ReadFileImput() {
   std::string line;
   std::ifstream input_file_program(infile_name);
   while (getline(input_file_program, line, '\n')) {
-    if (line.size() != 0) 
-      vector_conjuntos.push_back(line);
+    std::string word = "";
+    for (auto character : line) {
+      if (character == ' ') {
+        vector_conjuntos.push_back(word);
+        word = "";
+      } else {
+        word = word + character;
+      }
+    }
+    vector_conjuntos.push_back(word);
   }
   input_file_program.close();
 }

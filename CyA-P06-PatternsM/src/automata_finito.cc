@@ -31,7 +31,7 @@
 
 // Constructor, guardo en variables privadas los argumentos pasados, un
 // conjunto, el pattern y el número de estados.
-AutomataFinito::AutomataFinito(std::string conjunto, std::string pattern, 
+AutomataFinito::AutomataFinito(const std::string& conjunto, std::string pattern, 
     int state_end) {
   conjunto_af  = conjunto;
   pattern_af   = pattern;
