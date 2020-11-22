@@ -1,0 +1,14 @@
+bbb        -- Si    
+b~~~ba     -- Si    
+baa        -- Si    
+bab        -- Si    
+bb~a       -- Si    
+a~~~aaaa   -- No    
+bbka       -- No    
+sjns       -- No    
+askak      -- No    
+abbbb      -- Si    
+bbbbb      -- Si    
+aaaaa      -- No    
+shnshs     -- No    
+dd dd      -- No    
