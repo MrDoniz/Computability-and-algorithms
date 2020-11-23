@@ -121,10 +121,6 @@ void NFA::WriteFileOutput(const std::string& outfile_name) {
   output_file_program.close();
 }
 
-// Comprueba si la cadena pasada es aceptada por el NFA. Extrae el primer
-// simbolo de la cadena y recorre los estados del NFA, en el momento en el que
-// se termine la cadena, se encuentre en el estado final y este sea de
-// aceptación, devuelve TRUE. De lo contrario devuelve FALSE.
 bool NFA::AnalizarCadena(const std::string& cadena) {
   char cadena_vacia = char(126);
   std::vector<char> estado_vector_cadena;

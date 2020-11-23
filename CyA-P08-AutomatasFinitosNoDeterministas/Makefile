@@ -13,12 +13,12 @@ ODIR = src/
 CXXFLAGS= g++ -std=c++14 -g -Wall
 PROGRAM = nfa_simulation
 
-all: IA
+all: CYA
 
 Inicio:
 	@echo $(text1)
 
-IA: $(F) Inicio
+CYA: $(F) Inicio
 	$(CXXFLAGS) $(ODIR)$(F1) $(ODIR)$(F2) $(ODIR)$(F3) $(ODIR)$(F4) -o $(PROGRAM)
 	@echo $(text0)
 	@echo $(text2) $(text3)$(PROGRAM)

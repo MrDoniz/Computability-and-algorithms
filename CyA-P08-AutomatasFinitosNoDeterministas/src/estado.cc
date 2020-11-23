@@ -22,13 +22,16 @@
 #include "../lib/estado.h"
 
 // Constructor
-Estado::Estado(const char& id, const char& isFinalState) {
+Estado::Estado(const char& id, const char& aceptacion) {
   id_estado = id;
-  if (isFinalState == '1')
+  if (aceptacion == '1')
     estado_aceptacion = true;
   else
     estado_aceptacion = false;
 }
+
+// Destruye el estado creado.
+Estado::~Estado() {}
 
 // Devulve el identificador del estado.
 char Estado::GetIdEstado() { 
@@ -40,42 +43,42 @@ bool Estado::GetEstadoFinal() {
   return estado_aceptacion; 
 }
 
-// Devuelve un conjunto de transiciones.
-std::set<transition> Estado::GetConjuntoTransiciones() {
-  return conjunto_transiciones;
-}
-
 // Devulve el número de transiciones del estado.
 int Estado::GetNumeroTransiciones() { 
   return conjunto_transiciones.size(); 
 }
 
+// Devuelve un conjunto de transiciones.
+std::set<transition> Estado::GetConjuntoTransiciones() {
+  return conjunto_transiciones;
+}
+
 // Añade una transición al estado.
-void Estado::SetTransicion(const char& character, const char& nextState) {
-  transition temp(character, nextState);
+void Estado::SetTransicion(const char& simbolo, const char& estado) {
+  transition temp(simbolo, estado);
   conjunto_transiciones.insert(temp);
 }
 
 // Sobrecarga del operador =
-Estado& Estado::operator=(const Estado& rhs) {
-  this->id_estado = rhs.id_estado;
-  this->estado_aceptacion = rhs.estado_aceptacion;
-  this->conjunto_transiciones = rhs.conjunto_transiciones;
+Estado& Estado::operator=(const Estado& segundo_termino) {
+  this->id_estado = segundo_termino.id_estado;
+  this->estado_aceptacion = segundo_termino.estado_aceptacion;
+  this->conjunto_transiciones = segundo_termino.conjunto_transiciones;
   return *this;
 }
 
 // Sobrecarga del operador ==
-int Estado::operator==(const Estado& rhs) const {
-  if (this->id_estado != rhs.id_estado) 
+int Estado::operator==(const Estado& segundo_termino) const {
+  if (this->id_estado != segundo_termino.id_estado) 
     return 0;
-  if (this->estado_aceptacion != rhs.estado_aceptacion) 
+  if (this->estado_aceptacion != segundo_termino.estado_aceptacion) 
     return 0;
   return 1;
 }
 
 // Sobrecargadel operador <
-int Estado::operator<(const Estado& rhs) const {
-  if (this->id_estado < rhs.id_estado) 
+int Estado::operator<(const Estado& segundo_termino) const {
+  if (this->id_estado < segundo_termino.id_estado) 
     return 1;
   return 0;
 }

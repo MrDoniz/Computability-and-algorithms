@@ -12,3 +12,4 @@ bbbbb      -- Si
 aaaaa      -- No    
 shnshs     -- No    
 dd dd      -- No    
+~~         -- No    
