@@ -5,7 +5,7 @@
  * Computabilidad y Algoritmia
  * Práctica Nº: 8
  *
- * @tittle: NFA Simulation
+ * @tittle: Estado
  *
  * @author: Dóniz García Daniel
  * @date:   19 Nov 2020

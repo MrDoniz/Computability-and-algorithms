@@ -1,3 +1,19 @@
+/**
+ * Universidad de La Laguna
+ * Escuela Superior de Ingeniería y Tecnología
+ * Grado en Ingeniería Informática
+ * Computabilidad y Algoritmia
+ * Práctica Nº: 8
+ *
+ * @tittle: Estado
+ *
+ * @author: Dóniz García Daniel
+ * @date:   19 Nov 2020
+ * @email:  alu0101217277@ull.edu.es
+ * @brief:  Colores y comprobación de agurmentos.
+ *
+ */
+
 #include <algorithm>
 #include <fstream>
 #include <iostream>

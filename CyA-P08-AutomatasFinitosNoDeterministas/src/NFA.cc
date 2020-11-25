@@ -38,11 +38,10 @@ bool NFA::ReadFileNFA(const std::string& nfa_file_name) {
     estado_inicial = line.at(0);
   } else {
     nfa_file_program.close();
-    return false;                                             // DFA solo 1 estado inicial.
+    return false;  // DFA solo 1 estado inicial.
   }
 
-  for (unsigned i = 0; i < numero_de_estados;
-       ++i) {
+  for (unsigned i = 0; i < numero_de_estados; ++i) {
     getline(nfa_file_program, line, '\n');
     unsigned j = 0;
     char numero_id_estado = line[j];
@@ -54,14 +53,14 @@ bool NFA::ReadFileNFA(const std::string& nfa_file_name) {
 
     Estado transicion(numero_id_estado, numero_trans_estado);
     for (unsigned k = j; k < line.length(); k += 4) {
-      transicion.SetTransicion(line[k], line[k + 2]);         // Add simbolo y destino
+      transicion.SetTransicion(line[k], line[k + 2]);  // Add simbolo y destino
     }
     if (transicion.GetConjuntoTransiciones().size() ==
         (transition_number - '0')) {
       conjunto_estados.insert(transicion);
     } else {
       nfa_file_program.close();
-      return false;                                           // DFA numero de transiciones erroneos
+      return false;  // DFA numero de transiciones erroneos
     }
   }
   if (numero_de_estados == conjunto_estados.size()) {
@@ -69,10 +68,10 @@ bool NFA::ReadFileNFA(const std::string& nfa_file_name) {
     return true;
   } else {
     nfa_file_program.close();
-    return false;                                             // DFA estados erroneos
+    return false;  // DFA estados erroneos
   }
   nfa_file_program.close();
-  return false;                                               // Error al abrir el fichero.
+  return false;  // Error al abrir el fichero.
 }
 
 // Llamo a la función ReadFileImput(), la cual devulve un vector de cadenas.
@@ -104,8 +103,7 @@ void NFA::ReadFileImput(const std::string& infile_name) {
   std::string line;
   std::ifstream input_file_program(infile_name);
   while (getline(input_file_program, line, '\n')) {
-    if (line.size() != 0) 
-      vector_cadenas.push_back(line);
+    if (line.size() != 0) vector_cadenas.push_back(line);
   }
   input_file_program.close();
 }
@@ -121,32 +119,43 @@ void NFA::WriteFileOutput(const std::string& outfile_name) {
   output_file_program.close();
 }
 
+// Recibe una cadena, con esta recorre los estados posibles que puede seguir
+// según el NFA dado. Si es posible llegar al estado final devuelve true, de lo
+// contrario false. Esto lo hace extrayendo el primer caracter de cada cadena y
+// analizando la posición del caracter, con el estado actual del nfa y su estado
+// posterior. Cumpliendose estas condiciones, pasará al siguiente caracter de la
+// cadena. Cuando haya recorrido todas las posiciones de la cadena comprueba que
+// cada estado corresponde a la secuencia del nfa y que finalmente lelga al
+// estado de acpetación, si esto se cumple, retorna true saliendo del programa.
+// Por otro lado, si la cadena se queda sin estados nuevos posibles a los que
+// transitar, sale del while que a su vez, retorna false.
 bool NFA::AnalizarCadena(const std::string& cadena) {
   char cadena_vacia = char(126);
   std::vector<char> estado_vector_cadena;
   std::vector<std::string> vector_cadena;
   estado_vector_cadena.push_back(estado_inicial);
   vector_cadena.push_back(cadena);
+
   while (estado_vector_cadena.size() > 0) {
     char numero_estado_actual =
         estado_vector_cadena.at(estado_vector_cadena.size() - 1);
     std::string simbolo = vector_cadena.at(vector_cadena.size() - 1);
+    estado_vector_cadena.pop_back();
+    vector_cadena.pop_back();
     if (simbolo == "") {
       std::set<Estado>::iterator i = conjunto_estados.begin();
       for (unsigned j = 0; j < numero_de_estados; ++j) {
         Estado estado_actual = *i;
         if (estado_actual.GetIdEstado() == numero_estado_actual)
-          if (estado_actual.GetEstadoFinal() == true) 
-            return true;
+          if (estado_actual.GetEstadoFinal() == true) return true;
         i++;
       }
     }
-    estado_vector_cadena.pop_back();
-    vector_cadena.pop_back();
     std::set<Estado>::iterator i = conjunto_estados.begin();
     for (unsigned j = 0; j < numero_de_estados; ++j) {
       Estado estado_actual = *i;
       char numero_id_estado = estado_actual.GetIdEstado();
+      
       if (numero_id_estado == numero_estado_actual) {
         std::set<transition> transicion_estado_actual =
             estado_actual.GetConjuntoTransiciones();
